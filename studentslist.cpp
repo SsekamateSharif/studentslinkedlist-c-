@@ -145,11 +145,84 @@ void searchAges(Node *&first){
         //until the end
         if(current->age >= Age){
             // we check if the student at the current node has an age above or equal to the minimum age the user passed in 
-            cout << "NAME: " << current->name << "  AGE:  " << current->age << " ----->   "; // we output that student details.
+            cout << "NAME: " << current->name << "  AGE:  " << current->age << "  ---->  "; // we output that student details.
         }
 
         // update our current node 
         current = current->next;
+    }
+}
+
+// create a function that returns the minimum age of all the students
+void minimumAge(Node *&first){
+    // we reference our first node  
+    if(first != nullptr){
+        // then we have to create a variable to store our minimum number 
+        // iterate through the linked list and update the minimum 
+        int min = first->age; // we initialise the minimum as our first node age
+        Node *current = first;// this is our iterating node
+        while(current != nullptr){
+            if(current->age <= min){
+                // we check if the current node's age is less than minimum 
+                min = current->age;
+
+                // after updating our minimum we update our current node 
+                current = current->next;
+            }else{
+                // we just update to the next node 
+                current = current->next;
+            }
+        }
+        // we output the minimum age
+        cout << "The minimum age is: "<< min << endl;
+    }else{
+        cout << "The List is empty" << endl;
+    }
+};
+
+// create a function that gets the sum of our ages 
+void sumAges(Node *&first){
+    // we iterate the link 
+    // we check if the link is not empty
+    if(first != nullptr){
+        // we create our variable to store our sum 
+        int sum = 0;
+        Node *current = first; // iterating node 
+        while(current != nullptr){
+            // update the sum by adding it to the age of the current node
+            sum = sum + current->age; 
+            // update to the next node 
+            current =  current->next;
+        }
+        cout << "The of all the ages is: " << sum << " years." << endl;
+    }else{
+        cout << "The list is empty." << endl;
+    }
+};
+
+// function for finding the average of the ages 
+void average(Node *&first){
+    // we check if the list is empty 
+    if(first != nullptr){
+        // we iterate the link and get the sum and also get the number of elements in the linked list 
+        // we create our variable to store our sum 
+        double sum = 0;
+        // we create a variable to store the count of the elements in our linked list 
+        double count = 0;
+        Node *current = first; // iterating node 
+        while(current != nullptr){
+            // update the sum by adding it to the age of the current node
+            sum = sum + current->age; 
+            // update our count variable 
+            count++;
+            // update to the next node 
+            current =  current->next;
+        }
+        // we solve our average of ages 
+        double average = (sum/count);
+        cout << "The average of the ages is: " << average << endl;
+    }else{
+        cout << "The list is empty." << endl;
     }
 }
 
@@ -174,7 +247,17 @@ int main(){
     // we search the list and display our students with the age greater than the age the user inputs
     searchAges(first);
 
+    // we find the minimum age 
+    cout << endl;
+    minimumAge(first);
 
+    // we find the sum of the ages of the students in the linked list
+    cout << endl;
+    sumAges(first);
+
+    // we find the average of our ages of the students in the linked list 
+    cout << endl;
+    average(first);
 
     return 0;
 }
