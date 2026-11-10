@@ -65,17 +65,23 @@ void createList(Node *&first){
 };
 
 // we create a function that prints our linked list
-void print(Node *&first){
-   // again we reference our pointers not copy them 
-   // we need to iterate our linked list 
-   Node *current = first; // iterating node; we begin from the first node 
-   while(current != nullptr){
-     cout << "NAME: " << current->name << " AGE: " << current->age << "   ---->   ";
+void print(Node *&first) {
+    if (first != nullptr) {
+        Node *current = first;
 
-     // we always update our iterating node to the next node while iterating 
-     current = current->next;
-   }
-   cout << "NULLPTR"; // after we reach the end;
+        // Move to the last node
+        while (current->next != nullptr) {
+            current = current->next;
+        }
+
+        // Print backwards
+        while (current != nullptr) {
+            cout << "NAME: " << current->name << " AGE: " << current->age << " <--- ";
+            current = current->prev;
+        }
+    }
+
+    cout << "NULLPTR";
 }
 
 // remove an element by name from the linked list. 
@@ -233,8 +239,6 @@ int main(){
     Node *first = nullptr; // initiated to a nullptr since the list is empty 
 
     // we create our nodes referencing the first pointer that we created in our main function
-    createList(first);
-    createList(first);
     createList(first);
     createList(first);
     print(first);
