@@ -9,7 +9,7 @@ using namespace std;
 
 // i will then create a structure for my node properties and pointers (next and previous pointers)
 struct Node{
-    // we add our student properties 
+    // we add our student properties that will be stored in the node of the linked list 
     string name;
     int age;
 
